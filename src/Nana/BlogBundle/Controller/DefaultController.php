@@ -4,6 +4,8 @@ namespace Nana\BlogBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Nana\BlogBundle\form\MembersType;
@@ -62,38 +64,54 @@ class DefaultController extends Controller
     }
     
     public function loginAction(){
+        $member = new Members();
+        
         $request = $this->getRequest();
         $session = $request->getSession();
         
-        $form = $this->createForm(new LoginType());        
-        if ($request->getMethod() == 'POST') {
+        $form = $this->createForm(new LoginType(),$member);        
+        
+        if ($request->getMethod() == 'POST') 
+        {
             $form->bindRequest($request);
-
-            if ($form->isValid()) {
-                // perform some action, such as saving the task to the database
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($member);
-                $em->flush();
-                //return $this->redirect($this->generateUrl('register_suc'));
-                return $this->render('NanaBlogBundle:Default:index.html.twig');
-            }
+            
+            $em = $this->getDoctrine()->getEntityManager();            
+            $em->persist($member);
+            
+            $repository = $this->getDoctrine()
+                    ->getRepository('NanaBlogBundle:Members');
+            
+            $m = $repository->findOneByName($member->getName());
+            
+            return $this->render('NanaBlogBundle:Default:index.html.twig',array(
+                'member' =>$member,
+                'm' => $m,
+                's' => $session,
+            ));
+            
+            /*if($m->getPassword()== $member->getPassword()){
+                return $this->redirect($this->generateUrl('homepage'));
+            }else if(!$m){
+                exit("<script>alert('用户不存在')");
+                return $this->render('NanaBlogBundle:Default:login.html.twig', array(
+                    'form' => $form->createView(),
+                ));
+            }else{
+                exit("<script>alert('密码错误')");
+                return $this->render('NanaBlogBundle:Default:login.html.twig', array(
+                    'form' => $form->createView(),
+                ));
+            }*/
+            
         }
         return $this->render('NanaBlogBundle:Default:login.html.twig', array(
             'form' => $form->createView(),
         ));
     }
     
-    public function loginCheckAction()
-    {
-        $request = $this->getRequest();
-        $session = $request->getSession();
-        echo $request;
-        return $this->redirect($this->generateUrl('homepage'));
-    }
-    
     public function logoutAction()
     {
-        
+        return $this->render('NanaBlogBundle:Default:index.html.twig');
     }
     
     public function showAction()

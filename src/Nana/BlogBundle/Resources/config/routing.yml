@@ -26,8 +26,8 @@ login:
   pattern: Nana/login
   defaults: { _controller: NanaBlogBundle:Default:login }
   
-login_check:
-  pattern: Nana/login_check
-  defaults: { _controller: NanaBlogBundle:Default:loginCheck }
+logout:
+  pattern: Nana/logout
+  defaults: { _controller: NanaBlogBundle:Default:logout }
 
 

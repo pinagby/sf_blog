@@ -9,10 +9,34 @@
     </head>
     <body>
         <div class="container">
-            <div class="header_bar">
-                <a href="{{path('register')}}">register</a>
-                <a href="{{path('login')}}">login</a>
-            </div>
+        
+            {% if member %}
+                {% if m %}
+                    {% if m.password==member.password %}
+                        <div class="header_bar">
+                            欢迎你，{{ m.name }}！<a href="{{path('logout')}}">退出登录</a>                           
+                        </div> 
+                    {% else %}
+                        <div class="header_bar">
+                            密码错误！ 
+                            <a href="{{path('login')}}">重新登陆</a>
+                            <a href="{{path('register')}}">注册</a>
+                        </div> 
+                    {% endif %}
+                {% else %}
+                   <div class="header_bar">
+                        用户名不存在！
+                        <a href="{{path('login')}}">重新登陆</a>
+                        <a href="{{path('register')}}">注册</a>
+                    </div> 
+                {% endif %}
+            {% else %}
+                <div class="header_bar">
+                    <a href="{{path('login')}}">登陆</a>
+                    <a href="{{path('register')}}">注册</a>
+                </div>
+            {% endif %}
+            
             <div class="header_pic">
                 <img src="{{ asset('bundles/nanablog/images/NANA.png') }}" >
             </div>
