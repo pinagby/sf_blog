@@ -1,0 +1,87 @@
+/vendor/
+*~
+/app/logs/*
+/app/cache/*
+/web/uploads/*
+/web/bundles/*
+
+
+
+
+\.#*
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+
+
+
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# CDT-specific
+.cproject
+
+
+
+
+
+
+
+# KDE
+.directory
+
+
+nbproject/
+nbactions.xml
+
+
+
+.DS_Store
+Icon?
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+
+
+# Ignore tags created by etags and ctags
+TAGS
+tags
+
+
+*.tmproj
+*.tmproject
+tmtags
+
+
+.*.sw[a-z]
+*.un~
+Session.vim
+
+
+
+# Windows image file caches
+Thumbs.db 
+
+# Folder config file
+Desktop.ini
+

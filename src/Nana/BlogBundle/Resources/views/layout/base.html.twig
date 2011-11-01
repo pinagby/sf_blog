@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}NANA{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('bundles/nanablog/css/base.css') }}" type="text/css" media="all" />
+        {% block stylesheets %}{% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="header_bar">
+                <a href="{{path('register')}}">register</a>
+                <a href="{{path('login')}}">login</a>
+            </div>
+            <div class="header_pic">
+                <img src="{{ asset('bundles/nanablog/images/NANA.png') }}" >
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="{{path('homepage')}}">首页</a></li>
+                    <li><a href="{{path('diary')}}">日志</a></li>
+                    <li><a href="{{path('photo')}}">相册</a></li>
+                    <li><a href="{{path('music')}}">音乐</a></li>
+                    <li><a href="{{path('aboutme')}}">关于我</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+            <div class="content">
+                {% block content %}{% endblock %}
+                {% block javascripts %}{% endblock %}
+            </div>
+            <div class="footer">
+                <hr class="footer_line" />
+                NANA @ 2011
+            </div>
+        </div>
+    </body>
+</html>
+

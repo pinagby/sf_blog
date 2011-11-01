@@ -1,0 +1,56 @@
+/* 
+    Document   : index
+    Created on : 2011-10-27, 13:36:45
+    Author     : pinagby
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.index_me{
+    padding: 10px;
+    width: 430px;
+    float: left;
+    margin-left: 10px;
+}
+
+.index_diary{
+    padding: 10px;
+    width: 430px;
+    float: left;
+}
+
+.index_block_line{
+    color:#866463;
+    border-top:dashed 1px;
+}
+
+.index_block_bot{
+    margin: 10px;
+}
+
+.index_block_top{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.index_block_title{
+    float: left;
+    margin-bottom: 5px;
+}
+
+.index_block_op{
+    float: right;
+    font-size: 12px;
+    color: #BBBBBB;
+}
+
+.index_block_op a{
+    color: #BBBBBB;
+    text-decoration: none;
+}
+
+.index_block_op a:hover{
+    color: #000;
+    text-decoration: underline;
+}

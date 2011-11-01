@@ -1,0 +1,33 @@
+homepage:
+    pattern:  /Nana
+    defaults: { _controller: NanaBlogBundle:Default:index }
+
+diary:
+  pattern: /Nana/diary
+  defaults: { _controller: NanaBlogBundle:Diary:index }
+  
+photo:
+  pattern: /Nana/photo
+  defaults: { _controller: NanaBlogBundle:Photo:index }
+  
+music:
+  pattern: /Nana/music
+  defaults: { _controller: NanaBlogBundle:Music:index }
+  
+aboutme:
+  pattern: /Nana/aboutme
+  defaults: { _controller: NanaBlogBundle:Me:index }
+
+register:
+  pattern: Nana/register/
+  defaults: { _controller: NanaBlogBundle:Default:new }
+  
+login:
+  pattern: Nana/login
+  defaults: { _controller: NanaBlogBundle:Default:login }
+  
+login_check:
+  pattern: Nana/login_check
+  defaults: { _controller: NanaBlogBundle:Default:loginCheck }
+
+

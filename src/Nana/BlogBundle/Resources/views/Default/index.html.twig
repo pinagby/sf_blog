@@ -1,0 +1,30 @@
+{% extends "NanaBlogBundle::layout/base.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/nanablog/css/index.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block content %}
+    <div class="index_me">
+        <div class="index_block_top">
+            <span class="index_block_title">关于我</span>
+            <span class="index_block_op"><a href="#">编辑个人资料</a></span>
+        </div>
+        <div class="clear"></div>
+        <div class="index_block_line"></div>
+        <div class="index_block_bot">
+
+        </div>
+    </div>
+    <div class="index_diary">
+        <div class="index_block_top">
+            <span class="index_block_title">日志</span>
+            <span class="index_block_op"><a href="#">写日志</a></span>
+        </div>
+        <div class="clear"></div>
+        <div class="index_block_line"></div>
+        <div class="index_block_bot">
+
+        </div>
+    </div>
+    <div class="clear"></div>    
+{% endblock %}

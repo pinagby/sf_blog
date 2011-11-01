@@ -1,0 +1,2 @@
+# src/Nana/BlogBundle/Resources/config/validation.yml
+Nana\BlogBundle\Entity\Members:
