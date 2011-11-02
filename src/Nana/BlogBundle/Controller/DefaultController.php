@@ -64,6 +64,7 @@ class DefaultController extends Controller
     }
     
     public function loginAction(){
+        global $login;
         $member = new Members();
         
         $request = $this->getRequest();
@@ -83,25 +84,27 @@ class DefaultController extends Controller
             
             $m = $repository->findOneByName($member->getName());
             
-            return $this->render('NanaBlogBundle:Default:index.html.twig',array(
+            /*return $this->render('NanaBlogBundle:Default:index.html.twig',array(
                 'member' =>$member,
                 'm' => $m,
                 's' => $session,
-            ));
+            ));*/
             
-            /*if($m->getPassword()== $member->getPassword()){
-                return $this->redirect($this->generateUrl('homepage'));
-            }else if(!$m){
+            if(!$m){
                 exit("<script>alert('用户不存在')");
                 return $this->render('NanaBlogBundle:Default:login.html.twig', array(
                     'form' => $form->createView(),
                 ));
             }else{
-                exit("<script>alert('密码错误')");
-                return $this->render('NanaBlogBundle:Default:login.html.twig', array(
-                    'form' => $form->createView(),
-                ));
-            }*/
+                if($m->getPassword()== $member->getPassword()){
+                    return $this->redirect($this->generateUrl('homepage'));
+                }else{
+                    exit("<script>alert('密码错误')");
+                    return $this->render('NanaBlogBundle:Default:login.html.twig', array(
+                        'form' => $form->createView(),
+                    ));
+                }
+            }
             
         }
         return $this->render('NanaBlogBundle:Default:login.html.twig', array(
