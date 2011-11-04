@@ -3,6 +3,7 @@
 namespace Nana\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Nana\BlogBundle\Entity\DiaryCatgery as DiaryCatgery;
 
 /**
  * Nana\BlogBundle\Entity\Diary
@@ -48,6 +49,14 @@ class Diary
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
+    
+    /**
+     * @var string $diaryCategory
+     *
+     * @ORM\ManyToOne(targetEntity="DiaryCategory")
+     * @ORM\JoinColumn(name="diary_category_id", referencedColumnName="id")     
+     */
+    private $diaryCategory;
 
 
     /**
@@ -138,5 +147,25 @@ class Diary
     public function getDate()
     {
         return $this->date;
+    }
+    
+     /**
+     * Set diaryCategory
+     *
+     * @param string $diaryCategory
+     */
+    public function setDiaryCategory($diaryCategory)
+    {
+        $this->diaryCategory = $diaryCategory;
+    }
+
+    /**
+     * Get diaryCategory
+     *
+     * @return string 
+     */
+    public function getDiaryCategory()
+    {
+        return $this->diaryCategory;
     }
 }

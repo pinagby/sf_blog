@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Nana\BlogBundle\Entity\Diary;
 use Nana\BlogBundle\form\DiaryType;
+use Nana\BlogBundle\Entity\DiaryCategory;
+use Nana\BlogBundle\form\DiaryCategoryType;
 
 class DiaryController extends Controller
 {
@@ -15,26 +17,29 @@ class DiaryController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entities = $em->getRepository('NanaBlogBundle:Diary')->findAll();
+        $diary = $em->getRepository('NanaBlogBundle:Diary')->findAll();
+        $diarycat = $em->getRepository('NanaBlogBundle:DiaryCategory')->findAll();
         
         return $this->render('NanaBlogBundle:Default:diary.html.twig',array(
-            'entity' =>$entities
+            'diarys' =>$diary,
+            'diarycats' =>$diarycat
         ));
     }
     
     /**
-     * Displays a form to create a new diary.
+     * Create a form to create a new diary.
      *
      * @Route("Nana/diary/new", name="new_diary")
      * @Template("NanaBlogBundle:Diary:new.html.twig")
      */
     public function newAction(){
         $entity = new Diary();
+        $request = $this->getRequest();
+        $diarycat = $em->getRepository('NanaBlogBundle:DiaryCategory')->findAll();
+        
         $date = date_create(date("F j, Y, g:i a"));
         $entity->setDate($date);
         $form   = $this->createForm(new DiaryType(),$entity);
-        
-        $request = $this->getRequest();
         $form->bindRequest($request);
         
         if($form->isValid()){
@@ -45,7 +50,8 @@ class DiaryController extends Controller
             $entities = $em->getRepository('NanaBlogBundle:Diary')->findAll();
             
             return $this->render('NanaBlogBundle:Default:diary.html.twig',array(
-                'entity' =>$entities
+                'diarys' =>$entities,
+                'diarycats'=>$diarycat
             ));
         }
         
@@ -83,6 +89,42 @@ class DiaryController extends Controller
     
     public function deletAction($id){
         
+    }
+    
+    /**
+     * Create a form to create a new diary category.
+     *
+     * @Route("Nana/diary/new", name="new_diarycat")
+     * @Template("NanaBlogBundle:DiaryCategory:new_cat.html.twig")
+     */
+    public function newCatAction(){
+        $diarycat = new DiaryCategory();
+        
+        $em = $this->getDoctrine()->getEntityManager();
+        $diary = $em->getRepository('NanaBlogBundle:Diary')->findAll();
+        
+        $createtime = date_create(date("F j, Y, g:i a"));
+        $diarycat->setCreatetime($createtime);
+        $form   = $this->createForm(new DiaryCategoryType(),$diarycat);
+        
+        $request = $this->getRequest();        
+        $form->bindRequest($request);
+        
+        if($form->isValid()){
+            $em->persist($diarycat);
+            $em->flush();
+            
+            $diarycats = $em->getRepository('NanaBlogBundle:DiaryCategory')->findAll();
+            
+            return $this->render('NanaBlogBundle:Default:diary.html.twig',array(
+                'diarys' =>$diary,
+                'diarycats'=>$diarycats
+            ));
+        }
+        
+        return array(
+            'form'   =>$form->createView()
+        );
     }
 }
 

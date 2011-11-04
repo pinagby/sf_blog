@@ -3,15 +3,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="{{ asset('bundles/nanablog/css/vice.css') }}  type="text/css"  />
-        <title>日志</title>
+        <title>新建日志分类</title>
     </head>
     <body style="width:960px; margin:auto; margin-top:70px;">
         <table style="width:500px; margin:auto; border:1px solid #BBBBBB">
             <tr><td align="center" style="border-bottom:1px solid #BBBBBB;">
-                <h1>写日志</h1>
+                <h1>新建日志分类</h1>
             </td></tr>
             <tr><td style="padding-left:120px;">               
-                    <form action="{{ path('new_diary') }}"  method="post" {{ form_enctype(form) }}>
+                    <form action="{{ path('new_diarycat') }}"  method="post" {{ form_enctype(form) }}>
                         {{ form_widget(form) }}
                         <button type="submit">提交</button>
                     </form>                 

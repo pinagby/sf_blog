@@ -28,32 +28,16 @@ class DefaultController extends Controller
         
         $member = new Members();
         $request = $this->getRequest();
-        /*$member->setName("");
-        $member->setPassword("");
-        $member->setBirthday(new \Datetime());
-        $member->setEmail("");
-        $member->setSex("");*/
+       
         $form = $this->createForm(new MembersType(), $member);
-        /*$form = $this->createFormBuilder($member)
-            ->add('name', 'text')
-            ->add('password', 'password')
-            ->add('birthday', 'date',array('required'=>false,))
-            ->add('email', 'email')
-            ->add('sex', 'choice',array(
-                'choices' => array('m' =>'Male','f'=>'Female'),
-                'required' => true,
-            ))
-            ->getForm();*/
-        
+                
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-                // perform some action, such as saving the task to the database
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($member);
                 $em->flush();
-                //return $this->redirect($this->generateUrl('register_suc'));
                 return $this->render('NanaBlogBundle:Default:new_suc.html.twig');
             }
         }
@@ -66,10 +50,8 @@ class DefaultController extends Controller
     public function loginAction(){
         global $login;
         $member = new Members();
-        
         $request = $this->getRequest();
         $session = $request->getSession();
-        
         $form = $this->createForm(new LoginType(),$member);        
         
         if ($request->getMethod() == 'POST') 
@@ -84,25 +66,14 @@ class DefaultController extends Controller
             
             $m = $repository->findOneByName($member->getName());
             
-            /*return $this->render('NanaBlogBundle:Default:index.html.twig',array(
-                'member' =>$member,
-                'm' => $m,
-                's' => $session,
-            ));*/
-            
             if(!$m){
-                exit("<script>alert('用户不存在')");
-                return $this->render('NanaBlogBundle:Default:login.html.twig', array(
-                    'form' => $form->createView(),
-                ));
+                echo "<script>alert('用户不存在')</script>";                
             }else{
                 if($m->getPassword()== $member->getPassword()){
-                    return $this->redirect($this->generateUrl('homepage'));
+                    $session->set('user', $member->getName());
+                    return $this->render('NanaBlogBundle:Default:index.html.twig');
                 }else{
-                    exit("<script>alert('密码错误')");
-                    return $this->render('NanaBlogBundle:Default:login.html.twig', array(
-                        'form' => $form->createView(),
-                    ));
+                    echo "<script>alert('密码错误')</script>";                    
                 }
             }
             
@@ -114,6 +85,8 @@ class DefaultController extends Controller
     
     public function logoutAction()
     {
+        $session=$this->get('session');
+        $session->remove('user');
         return $this->render('NanaBlogBundle:Default:index.html.twig');
     }
     

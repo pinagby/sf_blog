@@ -100,3 +100,29 @@
     font-size: 14px;
     color: #000;
 }
+
+#new_diary_form form div{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 300px;
+    padding: 10px;
+}
+
+#new_diary_form form label{
+    width: 100px;
+}
+
+
+
+#new_diary_form form div input{
+    width: 200px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+#new_diary_form form div textarea{
+    width: 300px;
+    height: 400px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}

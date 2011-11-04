@@ -9,11 +9,17 @@
     </head>
     <body>
         <div class="container">
-        
+        {% if app.session.has('user') %}
+            <div class="header_bar">
+                欢迎你，{{ app.session.get('user') }}！
+                <a href="{{ path('logout') }}">退出登录</a>
+            </div>
+        {% else %}
             <div class="header_bar">
                 <a href="{{path('login')}}">登陆</a>
                 <a href="{{path('register')}}">注册</a>
             </div>
+        {% endif %}
             
             
             <div class="header_pic">

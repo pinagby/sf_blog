@@ -37,3 +37,7 @@ new_diary:
 show_diary:
   pattern: Nana/diary/show/{id}
   defaults: { _controller: NanaBlogBundle:Diary:show}
+
+new_diarycat:
+  pattern: Nana/diary/newcat
+  defaults: { _controller: NanaBlogBundle:Diary:newCat}

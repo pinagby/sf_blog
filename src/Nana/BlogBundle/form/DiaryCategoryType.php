@@ -4,19 +4,18 @@ namespace Nana\BlogBundle\form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class DiaryType extends AbstractType
+class DiaryCategoryType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('title','text')
-            ->add('content','textarea',array())
-            ->add('diaryCategory');
+            ->add('name','text')
+            ->add('description','textarea');
     }
     
     public function getName()
     {
-        return 'new_diary_form';
+        return 'new_diarycat_form';
     }
 }
 ?>

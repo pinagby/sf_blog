@@ -7,18 +7,24 @@
     {% block top_title %}日志{% endblock %}
     {% block left %}
         <div calss="left_content">
+        {% if app.session.has('user') %}
             <div class="wd mb5"><a href="{{path('new_diary')}}">写日志</a></div>
             <div class="md mb10">
                 <a href="#">管理日志</a>
                 <a href="#">管理分类</a>
             </div>
+        {% endif %}
             
             <div class="left_block">
                 <h4 class="left_title">分类</h4>
+                <a href="{{ path('new_diarycat') }}">新建分类</a>
                 <div class="left_line"></div>
                 <div class="left_con">
                     <ul>
                         <li>所有日志</li>
+                        {% for diarycat in diarycats %}
+                        <li>{{diarycat.name}}</li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <h4 class="left_title">归档</h4>
@@ -37,7 +43,7 @@
     {% block right %}
         <div class="right_top"><span>所有日志</span></div>
         <div class="right_mid">
-        {% for diary in entity %}
+        {% for diary in diarys %}
             <div class="right_block">
                 <div class="right_title"><a href="{{ path('show_diary', { 'id':diary.id }) }}">{{ diary.title }}</a></div>
                 <div class="right_specific">{{ diary.date|date('Y-m-d H:i:s') }}</div>
