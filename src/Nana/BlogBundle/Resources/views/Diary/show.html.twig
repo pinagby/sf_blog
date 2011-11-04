@@ -1,0 +1,11 @@
+{% extends "NanaBlogBundle::layout/base.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/nanablog/css/vice.css') }}" type="text/css" media="all" />
+{% endblock %}
+{% block content %}
+   
+<div class="diary_title">{{ entity.title }}</div>
+<div class="diary_date">{{ entity.date|date('Y-m-d H:i:s') }}</div>
+<div class="diary_content">{{ entity.content }}</div>
+
+{% endblock %}

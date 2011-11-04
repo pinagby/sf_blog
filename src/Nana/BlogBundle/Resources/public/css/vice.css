@@ -1,0 +1,102 @@
+.mb10{margin-bottom: 10px;}
+.mb5{margin-bottom: 5px;}
+.wd a{
+    text-decoration: none;
+    color: red;
+}
+.wd a:hover{
+    text-decoration: underline;
+}
+.md a{
+    text-decoration: underline;
+    color: red;
+}
+
+.left_block{
+    margin-top: 20px;
+}
+
+.left_line{
+    border-top: #BBBBBB 1px solid;
+    width: 90%;
+    margin-bottom: 5px;
+}
+
+.left_title{
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.left_con{
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.left_con ul li{
+    list-style: circle;
+}
+
+.right_top{
+    color: #BBBBBB;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.right_mid{
+    margin-left: 20px;
+}
+
+.right_block{
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+.right_block a{
+    color: red;
+    text-decoration: none;
+}
+
+.right_title{
+    font-weight: bold;
+    font-size: 18px;
+    float: left;
+}
+
+.right_specific{
+    font-size: 12px;
+    color: #BBBBBB;
+    float: right;
+}
+
+.right_line{
+    border-top: 1px #BBBBBB dashed;
+}
+
+.diary_title{
+    width: 880px;
+    margin: auto;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.diary_date{
+    width: 880px;
+    margin: auto;
+    text-align: center;
+    font-size: 12px;
+    color:  #BBBBBB;
+    margin-bottom: 10px;
+}
+
+.diary_content{
+    width: 880px;
+    margin: auto;
+    font-size: 14px;
+    color: #000;
+}
