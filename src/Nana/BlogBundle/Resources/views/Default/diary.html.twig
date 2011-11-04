@@ -1,8 +1,49 @@
-{% extends "NanaBlogBundle::layout/base.html.twig" %}
+{% extends "NanaBlogBundle::layout/layout.html.twig" %}
 {% block stylesheet %}
-    
+    <link rel="stylesheet" href="{{ asset('bundles/nanablog/css/vice.css') }}" type="text/css" media="all" />
 {% endblock %}
 
 {% block body %}
-    <h1>diary</h1>
+    {% block top_title %}日志{% endblock %}
+    {% block left %}
+        <div calss="left_content">
+            <div class="wd mb5"><a href="{{path('new_diary')}}">写日志</a></div>
+            <div class="md mb10">
+                <a href="#">管理日志</a>
+                <a href="#">管理分类</a>
+            </div>
+            
+            <div class="left_block">
+                <h4 class="left_title">分类</h4>
+                <div class="left_line"></div>
+                <div class="left_con">
+                    <ul>
+                        <li>所有日志</li>
+                    </ul>
+                </div>
+                <h4 class="left_title">归档</h4>
+                <div class="left_line"></div>
+                <div class="left_con">
+                    <ul>
+                        <li>2011年</li>
+                    </ul>
+                    <ul>
+                        <li>2010年</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    {% block right %}
+        <div class="right_top"><span>所有日志</span></div>
+        <div class="right_mid">
+        {% for diary in entity %}
+            <div class="right_block">
+                <div class="right_title"><a href="{{ path('show_diary', { 'id':diary.id }) }}">{{ diary.title }}</a></div>
+                <div class="right_specific">{{ diary.date|date('Y-m-d H:i:s') }}</div>
+                <div class="clear"></div>                        
+            </div>
+        {% endfor %}
+        </div>
+    {% endblock %}
 {% endblock %}

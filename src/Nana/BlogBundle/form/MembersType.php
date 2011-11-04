@@ -27,7 +27,7 @@ class MembersType extends AbstractType
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
             // a unique key to help generate the secret token
-            'intention'       => 'task_item',
+            'intention'       => 'members_item',
         );
     }
 
@@ -36,5 +36,4 @@ class MembersType extends AbstractType
         return 'nana_blogbundle_memberstype';
     }
 }
-
 ?>

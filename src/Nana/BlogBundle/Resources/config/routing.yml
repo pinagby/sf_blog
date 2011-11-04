@@ -29,5 +29,11 @@ login:
 logout:
   pattern: Nana/logout
   defaults: { _controller: NanaBlogBundle:Default:logout }
+  
+new_diary:
+  pattern: Nana/diary/new
+  defaults: { _controller: NanaBlogBundle:Diary:new}
 
-
+show_diary:
+  pattern: Nana/diary/show/{id}
+  defaults: { _controller: NanaBlogBundle:Diary:show}

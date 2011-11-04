@@ -82,3 +82,37 @@ body{
     width: 95%;
     margin-bottom: 10px;
 }
+
+.top{
+    width: 880px;
+    height: 25px;
+    margin: auto;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-bottom: 1px dashed #BBBBBB;
+}
+
+.top_title{
+    margin-left: 5px;
+    color: #8e8e8e;
+}
+
+.mid{
+    width: 880px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.left{
+    float: left;
+    border-right: 1px solid #BBBBBB;
+    width: 200px;
+    color: red;
+}
+
+.right{
+    border-left: 1px solid #BBBBBB;
+    width: 660px;    
+    margin-left: 200px;
+    color: red;
+}
