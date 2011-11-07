@@ -83,8 +83,14 @@ class DefaultController extends Controller
             }else{
                 if($m->getPassword()== $member->getPassword()){
                     $session->set('user', $member->getName());
-                    return $this->render('NanaBlogBundle:Default:index.html.twig');
-                }else{
+                    $diary = $em->getRepository('NanaBlogBundle:Diary')->findAll();
+                    $diarycat = $em->getRepository('NanaBlogBundle:DiaryCategory')->findAll();
+
+                    return $this->render('NanaBlogBundle:Default:index.html.twig',array(
+                        'diarys' =>$diary,
+                        'diarycats' =>$diarycat
+                    ));
+                  }else{
                     echo "<script>alert('密码错误')</script>";                    
                 }
             }
@@ -99,7 +105,16 @@ class DefaultController extends Controller
     {
         $session=$this->get('session');
         $session->remove('user');
-        return $this->render('NanaBlogBundle:Default:index.html.twig');
+        
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $diary = $em->getRepository('NanaBlogBundle:Diary')->findAll();
+        $diarycat = $em->getRepository('NanaBlogBundle:DiaryCategory')->findAll();
+        
+        return $this->render('NanaBlogBundle:Default:index.html.twig',array(
+            'diarys' =>$diary,
+            'diarycats' =>$diarycat
+        ));
     }
     
     public function showAction()
