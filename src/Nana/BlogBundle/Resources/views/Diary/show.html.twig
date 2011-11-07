@@ -6,6 +6,6 @@
    
 <div class="diary_title">{{ entity.title }}</div>
 <div class="diary_date">作者：{{ entity.author }}  发表日期：{{ entity.date|date('Y-m-d H:i:s') }}</div>
-<div class="diary_content">{{ entity.content }}</div>
+<div class="diary_content">{{ entity.content|nl2br }}</div>
 
 {% endblock %}
