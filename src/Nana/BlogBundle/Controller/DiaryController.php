@@ -5,6 +5,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session;
 use Nana\BlogBundle\Entity\Diary;
 use Nana\BlogBundle\form\DiaryType;
 use Nana\BlogBundle\Entity\DiaryCategory;
@@ -33,24 +35,28 @@ class DiaryController extends Controller
      * @Template("NanaBlogBundle:Diary:new.html.twig")
      */
     public function newAction(){
-        $entity = new Diary();
+        $em = $this->getDoctrine()->getEntityManager();
         $request = $this->getRequest();
-        $diarycat = $em->getRepository('NanaBlogBundle:DiaryCategory')->findAll();
-        
+        $session=$this->get('session');
         $date = date_create(date("F j, Y, g:i a"));
+        $author = $session->get('user');
+        
+        $entity = new Diary(); 
         $entity->setDate($date);
+        $entity->setAuthor($author);
+        
         $form   = $this->createForm(new DiaryType(),$entity);
         $form->bindRequest($request);
         
         if($form->isValid()){
-            $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
             $em->flush();
             
-            $entities = $em->getRepository('NanaBlogBundle:Diary')->findAll();
+            $diary = $em->getRepository('NanaBlogBundle:Diary')->findAll();
+            $diarycat = $em->getRepository('NanaBlogBundle:DiaryCategory')->findAll();
             
             return $this->render('NanaBlogBundle:Default:diary.html.twig',array(
-                'diarys' =>$entities,
+                'diarys' =>$diary,
                 'diarycats'=>$diarycat
             ));
         }

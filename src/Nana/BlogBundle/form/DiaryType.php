@@ -10,8 +10,13 @@ class DiaryType extends AbstractType
     {
         $builder
             ->add('title','text')
-            ->add('content','textarea',array())
-            ->add('diaryCategory');
+            ->add('content','textarea')
+            ->add('diaryCategory','entity', array(
+                'class'=>'Nana\BlogBundle\Entity\DiaryCategory', 
+                'property'=>'name', 
+                'required'=>FALSE,
+                'empty_value'=>'请选择'
+                ));
     }
     
     public function getName()

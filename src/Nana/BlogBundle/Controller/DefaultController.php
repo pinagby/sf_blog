@@ -11,6 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Nana\BlogBundle\form\MembersType;
 use Nana\BlogBundle\form\LoginType;
 use Nana\BlogBundle\Entity\Members;
+use Nana\BlogBundle\Entity\Diary;
+use Nana\BlogBundle\form\DiaryType;
+use Nana\BlogBundle\Entity\DiaryCategory;
+use Nana\BlogBundle\form\DiaryCategoryType;
 
 
 use Symfony\Component\HttpFoundation\Request as Request;
@@ -21,7 +25,15 @@ class DefaultController extends Controller
     
     public function indexAction()
     {
-        return $this->render('NanaBlogBundle:Default:index.html.twig');
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $diary = $em->getRepository('NanaBlogBundle:Diary')->findAll();
+        $diarycat = $em->getRepository('NanaBlogBundle:DiaryCategory')->findAll();
+        
+        return $this->render('NanaBlogBundle:Default:index.html.twig',array(
+            'diarys' =>$diary,
+            'diarycats' =>$diarycat
+        ));
     }
        
     public function newAction(){

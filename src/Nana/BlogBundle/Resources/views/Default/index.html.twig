@@ -24,7 +24,13 @@
         <div class="clear"></div>
         <div class="index_block_line"></div>
         <div class="index_block_bot">
-
+            {% for diary in diarys %}
+                <div class="right_block">
+                    <div class="right_title"><a href="{{ path('show_diary', { 'id':diary.id }) }}">{{ diary.title }}</a></div>
+                    <div class="right_specific">作者：{{ diary.author }}  发表日期：{{ diary.date|date('Y-m-d H:i:s') }}</div>
+                    <div class="clear"></div>                        
+                </div>
+            {% endfor %}
         </div>
     </div>
     <div class="clear"></div>    

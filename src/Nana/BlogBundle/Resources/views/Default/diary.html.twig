@@ -17,7 +17,10 @@
             
             <div class="left_block">
                 <h4 class="left_title">分类</h4>
-                <a href="{{ path('new_diarycat') }}">新建分类</a>
+                {% if app.session.has('user') %}
+                <div class="left_op"><a href="{{ path('new_diarycat') }}">新建分类</a></div>
+                {% endif %}
+                <div class="clear"></div>
                 <div class="left_line"></div>
                 <div class="left_con">
                     <ul>
@@ -46,7 +49,7 @@
         {% for diary in diarys %}
             <div class="right_block">
                 <div class="right_title"><a href="{{ path('show_diary', { 'id':diary.id }) }}">{{ diary.title }}</a></div>
-                <div class="right_specific">{{ diary.date|date('Y-m-d H:i:s') }}</div>
+                <div class="right_specific">作者：{{ diary.author }}  发表日期：{{ diary.date|date('Y-m-d H:i:s') }}</div>
                 <div class="clear"></div>                        
             </div>
         {% endfor %}
