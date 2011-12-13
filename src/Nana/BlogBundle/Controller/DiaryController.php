@@ -11,20 +11,32 @@ use Nana\BlogBundle\Entity\Diary;
 use Nana\BlogBundle\form\DiaryType;
 use Nana\BlogBundle\Entity\DiaryCategory;
 use Nana\BlogBundle\form\DiaryCategoryType;
+use MakerLabs\PagerBundle\Pager;
+use MakerLabs\PagerBundle\Adapter\DoctrineOrmAdapter;
 
 class DiaryController extends Controller
 {
-    
-    public function indexAction()
+   /**
+    *
+    * @Route("/Nana/diary/{page}", defaults={"page"=1}, name="diary")
+    * @Template()
+    */ 
+    public function indexAction($page)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
         $diary = $em->getRepository('NanaBlogBundle:Diary')->findAll();
         $diarycat = $em->getRepository('NanaBlogBundle:DiaryCategory')->findAll();
+       
+        $qb = $em->getRepository('NanaBlogBundle:Diary')->createQueryBuilder('f');
+        $adapter = new DoctrineOrmAdapter($qb);
+        $pager = new Pager($adapter, array('page' => $page, 'limit' => 6));
         
         return $this->render('NanaBlogBundle:Default:diary.html.twig',array(
             'diarys' =>$diary,
-            'diarycats' =>$diarycat
+            'diarycats' =>$diarycat,
+            'pager' => $pager,
+            //'offset'=>ceil($num/3)
         ));
     }
     

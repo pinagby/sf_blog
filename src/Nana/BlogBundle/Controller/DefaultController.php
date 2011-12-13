@@ -22,7 +22,10 @@ use Symfony\Component\Security\Core\SecurityContext;
 
 class DefaultController extends Controller
 {
-    
+    /**
+   * @Route("/Nana",name="homepage")
+   * @Template()
+   */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getEntityManager();

@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Nana\BlogBundle\NanaBlogBundle(),
+            new MakerLabs\PagerBundle\MakerLabsPagerBundle(),
             new Nana\ManageBundle\NanaManageBundle(),
         );
 
