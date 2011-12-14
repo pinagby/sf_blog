@@ -12,11 +12,11 @@ class AccountService
     private $em;
     public function __construct(EntityManager $em)
     {
-        $this->em=$en;
+        $this->em=$em;
     }
     
     public function checkLogin(){
-        
+        //exit("ffff");
     }
 }
 ?>

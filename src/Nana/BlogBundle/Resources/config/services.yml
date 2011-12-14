@@ -1,11 +1,16 @@
 parameters:
-#    nana_blog.example.class: Nana\BlogBundle\Example
+    nana.account.class: Nana\BlogBundle\Service\AccountService
 
 services:
 #    nana_blog.example:
 #        class: %nana_blog.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
      twig.extension.txt: 
          class: Twig_Extensions_Extension_Text 
          tags: 
              - { name: twig.extension }
+             
+     nana.account:
+         class: %nana.account.class%
+         arguments: [@doctrine.orm.entity_manager,"em"]

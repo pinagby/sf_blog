@@ -29,6 +29,7 @@ class DefaultController extends Controller
    */
     public function indexAction()
     {
+        //$this->get('nana.account')->checkLogin();
         $em = $this->getDoctrine()->getEntityManager();
         $diary = $em->getRepository('NanaBlogBundle:Diary')->findAll();
         $diarycat = $em->getRepository('NanaBlogBundle:DiaryCategory')->findAll();
