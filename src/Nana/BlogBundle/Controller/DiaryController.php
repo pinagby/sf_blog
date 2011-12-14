@@ -2,23 +2,27 @@
 namespace Nana\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session;
 use Nana\BlogBundle\Entity\Diary;
-use Nana\BlogBundle\form\DiaryType;
+use Nana\BlogBundle\Form\DiaryType;
 use Nana\BlogBundle\Entity\DiaryCategory;
-use Nana\BlogBundle\form\DiaryCategoryType;
+use Nana\BlogBundle\Form\DiaryCategoryType;
 use MakerLabs\PagerBundle\Pager;
 use MakerLabs\PagerBundle\Adapter\DoctrineOrmAdapter;
 
+/**
+ * Diary controller.
+ *
+ * @Route("/diary")
+ */
 class DiaryController extends Controller
 {
    /**
     *
-    * @Route("/Nana/diary/{page}", defaults={"page"=1}, name="diary")
+    * @Route("/{page}",defaults={"page"=1} , name="diary")
     * @Template()
     */ 
     public function indexAction($page)
@@ -32,18 +36,17 @@ class DiaryController extends Controller
         $adapter = new DoctrineOrmAdapter($qb);
         $pager = new Pager($adapter, array('page' => $page, 'limit' => 6));
         
-        return $this->render('NanaBlogBundle:Default:diary.html.twig',array(
+        return array(
             'diarys' =>$diary,
             'diarycats' =>$diarycat,
             'pager' => $pager,
-            //'offset'=>ceil($num/3)
-        ));
+        );
     }
     
     /**
      * Create a form to create a new diary.
      *
-     * @Route("Nana/diary/new", name="new_diary")
+     * @Route("/new/", name="new_diary")
      * @Template("NanaBlogBundle:Diary:new.html.twig")
      */
     public function newAction(){
@@ -67,17 +70,22 @@ class DiaryController extends Controller
             $diary = $em->getRepository('NanaBlogBundle:Diary')->findAll();
             $diarycat = $em->getRepository('NanaBlogBundle:DiaryCategory')->findAll();
             
-            return $this->render('NanaBlogBundle:Default:diary.html.twig',array(
+            return array(
                 'diarys' =>$diary,
                 'diarycats'=>$diarycat
-            ));
+            );
         }
         
         return array(
             'form'   =>$form->createView()
         );
     }
-    
+    /**
+     * Edit a form to create a new diary.
+     *
+     * @Route("/edit/", name="new_diary")
+     * @Template()
+     */
     public function editAction($id){
         
     }
@@ -85,7 +93,7 @@ class DiaryController extends Controller
     /**
      * Displays a form to create a new diary.
      *
-     * @Route("Nana/diary/show/{id}", name="show_diary")
+     * @Route("/show/{id}", name="show_diary")
      * @Template("NanaBlogBundle:Diary:show.html.twig")
      */
     public function showAction($id){
@@ -112,7 +120,7 @@ class DiaryController extends Controller
     /**
      * Create a form to create a new diary category.
      *
-     * @Route("Nana/diary/new", name="new_diarycat")
+     * @Route("/new_cat/", name="new_diarycat")
      * @Template("NanaBlogBundle:DiaryCategory:new_cat.html.twig")
      */
     public function newCatAction(){
@@ -134,10 +142,10 @@ class DiaryController extends Controller
             
             $diarycats = $em->getRepository('NanaBlogBundle:DiaryCategory')->findAll();
             
-            return $this->render('NanaBlogBundle:Default:diary.html.twig',array(
+            return array(
                 'diarys' =>$diary,
                 'diarycats'=>$diarycats
-            ));
+            );
         }
         
         return array(

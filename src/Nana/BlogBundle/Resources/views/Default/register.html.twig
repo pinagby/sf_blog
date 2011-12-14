@@ -2,24 +2,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>用户登录</title>
+        <title>用户注册</title>
     </head>
     <body style="width:960px; margin:auto; margin-top:70px;">
         <table style="width:500px; margin:auto; border:1px solid #BBBBBB">
             <tr><td align="center" style="border-bottom:1px solid #BBBBBB;">
-                <h1>用户登录</h1>
+                <h1>用户注册</h1>
             </td></tr>
-            <tr><td style="padding-left:40px;">
-                <form action="{{path('logindo')}}" method="post" {{ form_enctype(form) }}>
+            <tr><td style="padding-left:120px;">
+                <form action="{{ path('registerdo') }}"  method="post" {{ form_enctype(form) }}>
                     {{ form_widget(form) }}
                     <p>
-                        <button type="submit">登录</button>
+                        <button type="submit">注册</button>
                     </p>
-                </form> 
+                </form>                
             </td></tr>
             <tr><td align="center" style="border-top:1px solid #BBBBBB;">
                 <a href="{{path('homepage')}}">返回首页</a>
             </td></tr>
         </table>
+        
+        
     </body>
 <html>

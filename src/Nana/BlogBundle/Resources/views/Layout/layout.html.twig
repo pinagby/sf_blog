@@ -1,0 +1,25 @@
+{% extends "NanaBlogBundle::Layout/base.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/nanablog/css/base.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/nanablog/css/vice.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/makerlapspaper/css/clean.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/makerlapspaper/css/round.css') }}" type="text/css" media="all" />
+{% endblock %}
+{% block scripts %}{% endblock %}
+
+{% block content %}
+    <div class="top">
+        <span class="top_title">
+            {% block top_title %}{% endblock %}
+        </span>
+    </div>
+    <div class="mid">
+        <div class="left">
+            {% block left %}{% endblock %}
+        </div>
+        <div class="right">
+            {% block right %}{% endblock %}
+        </div>
+        <div class="clear"></div>
+   </div>
+{% endblock %}

@@ -1,11 +1,7 @@
-NanaManageBundle:
-    resource: "@NanaManageBundle/Resources/config/routing.yml"
-    prefix:   /
-
 NanaBlogBundle:
-    resource: "@NanaBlogBundle/Resources/config/routing.yml"
-    prefix:   /
-
+    resource: "@NanaBlogBundle/Controller"
+    type:     annotation
+ 
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"

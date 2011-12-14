@@ -19,7 +19,6 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Nana\BlogBundle\NanaBlogBundle(),
             new MakerLabs\PagerBundle\MakerLabsPagerBundle(),
-            new Nana\ManageBundle\NanaManageBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

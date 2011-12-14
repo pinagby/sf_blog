@@ -1,20 +1,25 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 namespace Nana\BlogBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-
+/**
+ * AboutMe controller.
+ *
+ * @Route("/music")
+ */
 class MusicController extends Controller
 {
-    
+    /**
+    *
+    * @Route("/", name="music")
+    * @Template()
+    */
     public function indexAction()
     {
-        return $this->render('NanaBlogBundle:Default:music.html.twig');
+        return array();
     }
 }
 

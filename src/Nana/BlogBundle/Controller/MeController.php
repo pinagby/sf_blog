@@ -1,22 +1,27 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 namespace Nana\BlogBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Nana\BlogBundle\Entity\Member;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * AboutMe controller.
+ *
+ * @Route("/me")
+ */
 class MeController extends Controller
 {
-    
+    /**
+    *
+    * @Route("/", name="me")
+    * @Template()
+    */
     public function indexAction()
     {
-        return $this->render('NanaBlogBundle:Default:aboutme.html.twig');
+        return array();
     }
     
     public function editAction(){
