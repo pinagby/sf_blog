@@ -75,6 +75,7 @@ class AccountController extends Controller
     public function logindoAction(){
         global $login;
         $member = new Members();
+        $request = $this->getRequest();
         $session = $request->getSession();
         $form = $this->createForm(new LoginType(),$member);        
         
